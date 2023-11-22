@@ -37,4 +37,4 @@ def puja_kerang_ajaib():
             return jsonify({"error": "Nama harus disertakan dalam POST request"}), 400
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
