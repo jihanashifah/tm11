@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puja Kerang Ajaib</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #007BFF;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Puja Kerang Ajaib</h1>
+    <button onclick="getRandomMessage()">Get Random Message</button>
+    <button onclick="getRandomMessageWithName()">Get Random Message with Name</button>
+    <button onclick="postMessage()">Post Message</button>
+
+    <script>
+        async function getRandomMessage() {
+            const response = await fetch('/puja_kerang_ajaib');
+            const data = await response.json();
+            alert(data.message);
+        }
+
+        async function getRandomMessageWithName() {
+            const name = prompt('Enter your name:');
+            const response = await fetch(`/puja_kerang_ajaib?nama=${name}`);
+            const data = await response.json();
+            alert(data.message);
+        }
+
+        async function postMessage() {
+            const name = prompt('Enter your name:');
+            const response = await fetch('/puja_kerang_ajaib', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `nama=${name}`,
+            });
+            const data = await response.json();
+            alert(data.message);
+        }
+    </script>
+</body>
+</html>
